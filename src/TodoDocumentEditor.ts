@@ -20,7 +20,11 @@ export class TodoDocumentEditor {
 
         let taskLine= this._textEditor.document.lineAt(this._textEditor.selection.active);
         let taskDescription= taskLine.text.trim();
-        this.updateTask(taskLine, taskDescription, TodoConfiguration.SYMBOL_NEW_TASK);
+
+        let maxId = todoDocument.getTasks().map(t => t.getId())
+            .sort((a, b) => b - a)[0] + 1;
+
+        this.updateTask(taskLine, maxId + " " + taskDescription, TodoConfiguration.SYMBOL_NEW_TASK);
     }
 
     public completeCurrentTask() {
@@ -66,8 +70,8 @@ export class TodoDocumentEditor {
         this._textEditorEdit.delete(new Range(new Position(taskLine.lineNumber, taskLine.firstNonWhitespaceCharacterIndex), taskLine.range.end));
 
         var timestamp = new Date();  
-        var dateOptions = TodoConfiguration.DATE_UTC ? { timeZone: "UTC", timeZoneName: "short" } : {};      
-
+        var dateOptions = TodoConfiguration.DATE_UTC ? { timeZone: "UTC", timeZoneName: "short" } : {};     
+        
         var showDate = TodoConfiguration.DATE_SHOW;
         var tagText = " " + TodoDocument.toTag(tag)+ (showDate ? (' (' + timestamp.toLocaleString(undefined, dateOptions) + ')'): "" );
         var newLine = symbol + " " + taskDescription + (tag ? (tagText): "");

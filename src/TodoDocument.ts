@@ -89,6 +89,11 @@ export class Task {
         return this.taskText.substring(TodoConfiguration.SYMBOL_NEW_TASK.length).trim();
     }
 
+    public getId(): number {
+        return TodoConfiguration.USE_IDS && parseInt(this.taskText.substring(TodoConfiguration.SYMBOL_DONE_TASK.length + 1))
+            || -1;
+    }
+
     public isEmpty(): boolean {
         return !this.getDescription().trim();
     }

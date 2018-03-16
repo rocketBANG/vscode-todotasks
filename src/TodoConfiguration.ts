@@ -9,6 +9,8 @@ export class TodoConfiguration {
 
     public static DATE_SHOW = true;
     public static DATE_UTC = false;
+
+    public static USE_IDS = true;
     
     public updateConfig()
     {

@@ -40,7 +40,9 @@ class LineDecorator {
 	protected getRange(text: string, line: TextLine): Range {
 		let start:Position= line.range.start;
 		let lineText:string= line.text;
-		let symbolIndex:number= lineText.indexOf(text);
+        let symbolIndex:number= lineText.indexOf(text);
+        // if(symbolIndex === -1) return null;
+
 		let startPositionToDecorate= new Position(start.line, symbolIndex);
 		let endPositionToDecorate= new Position(start.line, symbolIndex + text.length);
 		return new Range(startPositionToDecorate, endPositionToDecorate);

@@ -51,7 +51,7 @@
                 "configuration": "./todo.configuration.json"
             }
         ],
-        "configuration": { 
+        "configuration": {
             "type": "object",
             "title": "ToDoTasks configuration",
             "properties": {
@@ -79,10 +79,9 @@
                     "type": "string",
                     "default": "✘",
                     "description": "Changes the symbol to denote a canceled task"
-                } 
+                }
             }
         },
-
         "grammars": [
             {
                 "language": "todo",
